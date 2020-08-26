@@ -11,15 +11,17 @@ import edu.eci.arsw.cinema.model.Movie;
 import edu.eci.arsw.cinema.persistence.CinemaException;
 import edu.eci.arsw.cinema.persistence.CinemaPersistenceException;
 import edu.eci.arsw.cinema.persistence.CinemaPersitence;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+import java.util.*;
 
 /**
  *
  * @author cristian
  */
+@Component
+@Qualifier("inMemoryCP")
 public class InMemoryCinemaPersistence implements CinemaPersitence{
     
     private final Map<String,Cinema> cinemas=new HashMap<>();
@@ -38,12 +40,33 @@ public class InMemoryCinemaPersistence implements CinemaPersitence{
 
     @Override
     public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaException {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        Cinema cinemaTicket = this.cinemas.get(cinema);
+        List<CinemaFunction> functionsOfOurCinema=cinemaTicket.getFunctions();
+        boolean functionFound=false;
+        for (CinemaFunction cf: functionsOfOurCinema) {
+            if(cf.getMovie().getName().equals(movieName) && cf.getDate().equals(date)){
+                cf.buyTicket(row,col);
+                functionFound=true;
+            }
+        }
+        if (!functionFound){
+            throw new CinemaException("No se encontraron funciones con los parametros indicados.");
+        }
     }
 
     @Override
     public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        List<CinemaFunction> functions = new LinkedList<CinemaFunction>();
+        Cinema cinemaTicket = this.cinemas.get(cinema);
+        List<CinemaFunction> functionsOfOurCinema=cinemaTicket.getFunctions();
+
+        for (CinemaFunction cf: functionsOfOurCinema) {
+            if(cf.getDate().equals(date)){
+               functions.add(cf);
+            }
+        }
+        return functions;
+
     }
 
     @Override
