@@ -5,9 +5,11 @@
  */
 package edu.eci.arsw.cinema.services;
 
+import edu.eci.arsw.cinema.filter.CinemaFilterException;
 import edu.eci.arsw.cinema.filter.CinemaFilterI;
 import edu.eci.arsw.cinema.model.Cinema;
 import edu.eci.arsw.cinema.model.CinemaFunction;
+import edu.eci.arsw.cinema.model.Movie;
 import edu.eci.arsw.cinema.persistence.CinemaException;
 import edu.eci.arsw.cinema.persistence.CinemaPersistenceException;
 import edu.eci.arsw.cinema.persistence.CinemaPersitence;
@@ -29,9 +31,6 @@ public class CinemaServices {
     @Autowired
     @Qualifier("FilterByA")
     CinemaFilterI cf;
-
-
-
 
     public void addNewCinema(Cinema c){
         
@@ -58,6 +57,12 @@ public class CinemaServices {
     
     public List<CinemaFunction> getFunctionsByCinemaAndDate(String cinema, String date) {
         return cps.getFunctionsbyCinemaAndDate(cinema,date);
+    }
+
+
+    public List<Movie> filter(String cinema, String date, String filter) throws CinemaException, CinemaPersistenceException, CinemaFilterException {
+        Cinema cinemA = this.getCinemaByName(cinema);
+        return cf.filerMovie(cinemA,date,filter);
     }
 
 

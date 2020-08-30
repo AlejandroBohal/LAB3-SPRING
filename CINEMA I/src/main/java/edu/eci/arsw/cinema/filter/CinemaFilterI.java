@@ -7,5 +7,5 @@ import java.util.List;
 
 
 public interface CinemaFilterI{
-    public List<Movie> filerMovie(Cinema cinema, String date,String filter);
+    public List<Movie> filerMovie(Cinema cinema, String date,String filter) throws CinemaFilterException;
 }
