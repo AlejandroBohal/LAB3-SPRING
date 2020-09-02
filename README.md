@@ -1,5 +1,5 @@
 
-# LAB2 - JAVA IMMORTALS
+# LAB3 - SPRING INTRODUCTION
 
 ### Descripción
 
@@ -67,3 +67,5 @@ To illustrate the use of the Spring framework, and the development environment f
     ![img4](https://media.discordapp.net/attachments/497217237258600449/748246227082280991/unknown.png)
 
 4. Make a test program, where an instance of GrammarChecker is created by Spring, and use it:
+  
+	La prueba se encuentra en la implementación del proyecto maven en la carpeta test.
