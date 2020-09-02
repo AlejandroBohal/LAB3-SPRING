@@ -1,3 +1,52 @@
+
+# LAB2 - JAVA IMMORTALS
+
+### Descripción
+
+En este repositorio se encontrará la solución al laboratiorio 3 de ARSW,
+encontraremos dos proyectos maven con la solución, estos proyectos
+tienen como objetivo dar una introducción a Spring. A continuación se darán
+las instrucciones de instalación y las respuestas a los ejercicios.
+
+### Pre requisitos
+
+Para correr el proyecto debe tener instalados los siguientes programas
+en su computador:
+
+- Java SE Development Kit 8
+- Java SE Runtime Environment 8
+- Maven para poder construir el proyecto.
+- Git para clonar el repositorio. 
+
+### Instrucciones de instalación
+
+Desde la terminal ejecutar los siguientes comandos:
+```
+ git clone https://github.com/AlejandroBohal/LAB3-SPRING
+ #Para la parte 1 de la implementación#
+ cd "CINEMA I" 
+ #Para la parte 2 de la implementación#
+ cd GRAMMAR-CHECKER
+```
+compilar el proyecto con el siguiente comando:
+```
+ mvn package
+```
+Para correr la solución del problema CINEMA I:
+```
+mvn exec:java -Dexec.mainClass="edu.eci.arsw.cinema.ui.Main"
+```
+Para correr la solución al problema GRAMMAR-CHECKER:
+```
+mvn exec:java -Dexec.mainClass="edu.eci.arsw.springdemo.ui.Main";
+```
+### Pruebas
+
+Para correr las pruebas usar el siguiente comando.
+```
+mvn test;
+```
+
 # Introduction to Spring and Configuration using annotations
 
 ## Part I - Basic workshop 
